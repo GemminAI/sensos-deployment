@@ -1,0 +1,64 @@
+{
+ "command": [
+  "uv",
+  "pip",
+  "compile",
+  "manifests/platforms/linux-cpu.lock.in",
+  "--universal",
+  "--python-version",
+  "3.12",
+  "--generate-hashes",
+  "--only-binary",
+  ":all:",
+  "--no-header"
+ ],
+ "dry_run_resolution_checks": [
+  {
+   "ok": true,
+   "platform": "x86_64-manylinux_2_39",
+   "python": "3.12"
+  },
+  {
+   "ok": true,
+   "platform": "x86_64-manylinux_2_39",
+   "python": "3.13"
+  },
+  {
+   "ok": true,
+   "platform": "x86_64-manylinux_2_39",
+   "python": "3.14"
+  },
+  {
+   "ok": true,
+   "platform": "aarch64-manylinux_2_39",
+   "python": "3.12"
+  },
+  {
+   "ok": true,
+   "platform": "aarch64-manylinux_2_39",
+   "python": "3.13"
+  },
+  {
+   "ok": true,
+   "platform": "aarch64-manylinux_2_39",
+   "python": "3.14"
+  }
+ ],
+ "generated_at": "2026-11-25T03:10:17Z",
+ "generated_on": {
+  "machine": "arm64",
+  "python": "3.14.7",
+  "release": "25.6.0",
+  "system": "Darwin",
+  "tool": "uv 0.11.29 (Homebrew 2026-07-15 aarch64-apple-darwin)"
+ },
+ "input_sha256": "469f783d47c9d089debfcb8fe2dd63a28f29c98b6240d7159e17bedf45203279",
+ "lock_sha256": "f9a7dff288507d79b09df99b8f231c6ba22ca30f9011ca9ec38331feae2c3749",
+ "mode": "universal (all platforms; one lock for every OS/arch/Python >= floor)",
+ "not_checked": [
+  "No package was installed or imported on any Linux machine.",
+  "uv's resolver was used for the dry-run; the installer uses pip (--require-hashes)."
+ ],
+ "python_floor": "3.12",
+ "record_version": "linux-cpu-lock-record/1"
+}

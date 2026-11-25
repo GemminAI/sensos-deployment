@@ -1,0 +1,30 @@
+[project]
+name = "sensos-deployment"
+version = "0.0.0"
+description = "Installer, validator and updater for a pinned set of SensOS components."
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["common", "installers", "reports", "tools", "tests", "public-sync"]
+mypy_path = ["public-sync"]
+
+# hekb-vnext's ``graph`` package exists only inside the release venv (the helper runs there), not in the dev environment.
+[[tool.mypy.overrides]]
+module = ["graph", "graph.*"]
+ignore_missing_imports = true

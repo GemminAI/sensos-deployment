@@ -1,0 +1,46 @@
+{
+  "manifest_version": "core-release-manifest/0",
+  "release_id": "core-2026.11.25-0",
+  "decisions": ["D-256", "D-262", "D-265"],
+  "note": "Draft pins of 2026-11-25 (git ls-remote). Four repositories are pinned by main commit, two packages by PyPI version and wheel sha256.",
+  "repositories": [
+    {
+      "name": "sensos",
+      "url": "https://github.com/GemminAI/sensos.git",
+      "branch": "main",
+      "commit": "f700a3d3ba4e7e9013e42d515071cd38bf8e99e4"
+    },
+    {
+      "name": "hekb-vnext",
+      "url": "https://github.com/GemminAI/hekb-vnext.git",
+      "branch": "main",
+      "commit": "5943a8d43ef1e63a818d40e10b52c61e334394be"
+    },
+    {
+      "name": "meaning-mapper",
+      "url": "https://github.com/GemminAI/meaning-mapper.git",
+      "branch": "main",
+      "commit": "f76dc2f7692fd2dbacc9efe833ba083338dbc57e",
+      "expected_version": "2.3.0"
+    },
+    {
+      "name": "meaning-space-runtime",
+      "url": "https://github.com/GemminAI/meaning-space-runtime.git",
+      "branch": "main",
+      "commit": "ee26c7c172ae321c766bf49361b003dd3914ddd8",
+      "expected_version": "0.1.0"
+    }
+  ],
+  "packages": [
+    {
+      "name": "nvs-runtime",
+      "version": "1.0.0",
+      "wheel_sha256": "58061161b1a08e35d7a0fbbd3f05b58a15dcd2b7f0ae4380ca553be07b72e136"
+    },
+    {
+      "name": "nvs-observation",
+      "version": "0.1.0.dev0",
+      "wheel_sha256": "39e46599c3a3389756d22e7cc7c3f68a59fb4c0d8e1979f706dbc40cd392ca31"
+    }
+  ]
+}

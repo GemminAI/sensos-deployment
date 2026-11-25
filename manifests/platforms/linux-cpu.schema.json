@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-manifest/0",
+  "title": "Platform Manifest v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "platform_id", "os", "architectures", "python", "lock"],
+  "properties": {
+    "manifest_version": {"const": "platform-manifest/0"},
+    "platform_id": {"type": "string", "minLength": 1},
+    "decisions": {"type": "array", "items": {"type": "string", "pattern": "^D-[0-9]+$"}},
+    "os": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version_id"],
+      "properties": {"id": {"type": "string"}, "version_id": {"type": "string"}}
+    },
+    "architectures": {"type": "array", "minItems": 1, "items": {"enum": ["x86_64", "aarch64"]}},
+    "python": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": {"type": "string", "pattern": "^3\\.[0-9]+$"},
+        "max": {"type": "string", "pattern": "^3\\.[0-9]+$"}
+      }
+    },
+    "inference_engine": {"type": ["string", "null"]},
+    "observation_adapter": {"type": ["string", "null"]},
+    "compute_environment": {"type": "string"},
+    "lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "sha256"],
+      "properties": {
+        "file": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "record": {"type": "string"},
+        "input": {"type": "string"}
+      }
+    }
+  }
+}

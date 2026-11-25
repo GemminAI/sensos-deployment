@@ -1,0 +1,68 @@
+# Public audit rules for audit_rules.py: layer 3 (secrets, language independent) and the general
+# part of layer 1. Rules about non-public structure (layer 2) and about business-specific words are
+# kept outside this repository and passed with --rules. Patterns are written so that this file does
+# not match its own rules (a character class stands in for one letter of a keyword).
+
+# ---- layer 3: secrets ------------------------------------------------------------------------
+
+[[rule]]
+id = "secret.private-key-block"
+layer = 3
+pattern = 'BEGIN [A-Z ]*PRIVATE KE[Y]'
+description = "A private key block."
+
+[[rule]]
+id = "secret.known-token-shape"
+layer = 3
+pattern = '\b(?:sk-[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|xox[bp]-[A-Za-z0-9-]{10,}|AKIA[A-Z0-9]{16}|hf_[A-Za-z0-9]{30,})\b'
+description = "The shape of a common API key or access token."
+
+[[rule]]
+id = "secret.bearer-or-basic-credential"
+layer = 3
+pattern = '(?i)\b(?:authorization|bearer)\b[:=\s]+(?:bearer|basic)?\s*[A-Za-z0-9._~+/=-]{20,}'
+description = "An authorization header or bearer credential with a value."
+
+[[rule]]
+id = "secret.assigned-credential"
+layer = 3
+pattern = '(?i)\b(?:pass[w]ord|pass[w]d|secre[t]|api[_-]?ke[y]|access[_-]?toke[n])\b\s*[:=]\s*["\x27][^"\x27\s]{8,}["\x27]'
+description = "A credential-like name assigned a quoted literal value."
+
+[[rule]]
+id = "secret.long-mixed-string"
+layer = 3
+pattern = '(?<![0-9a-fA-F])(?![0-9a-f]{40}(?![0-9A-Za-z])|[0-9a-f]{64}(?![0-9A-Za-z]))(?=[A-Za-z0-9+/]*\d)(?=[A-Za-z0-9+/]*[A-Za-z])[A-Za-z0-9+/]{48,}'
+description = "A long run of letters and digits that looks like a key (hex digests excluded; underscores are not part of the run, so identifiers do not match)."
+
+# ---- layer 1: general information that must not be published ----------------------------------
+
+[[rule]]
+id = "path.local-unix-home"
+layer = 1
+pattern = '/(?:[U]sers|home)/[A-Za-z_][\w.-]*/'
+description = "An absolute path into a personal home folder."
+
+[[rule]]
+id = "path.local-windows-home"
+layer = 1
+pattern = '[A-Za-z]:\\[U]sers\\'
+description = "An absolute path into a Windows user folder."
+
+[[rule]]
+id = "identity.email-address"
+layer = 1
+pattern = '\b[A-Za-z0-9._%+-]+@(?![A-Za-z0-9.-]*(?:\.invalid|\.test|\.example|example\.(?:com|org|net))\b)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b'
+description = "An email address (reserved example and test domains are not reported)."
+
+[[rule]]
+id = "network.private-ip-address"
+layer = 1
+pattern = '\b(?:10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(?:1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3})\b'
+description = "A private-network IPv4 address."
+
+[[rule]]
+id = "path.local-transfer-or-mount"
+layer = 1
+pattern = '(?:/[V]olumes/|/media/ps[f]|_[t]ransfer/)'
+description = "A path on a local volume, a VM shared folder or a transfer folder (review each hit)."

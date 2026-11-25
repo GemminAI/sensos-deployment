@@ -1,0 +1,12 @@
+# Top-level requirements of the linux-cpu platform (input of the lock; D-262).
+# nvs-runtime / nvs-observation: PyPI versions pinned by the Core Release Manifest (D-256).
+# The other four Core repositories are checked out by commit and are NOT pip-installed
+# (pip forbids unhashed local requirements under --require-hashes); see docs/installer.md.
+nvs-runtime==1.0.0
+nvs-observation==0.1.0.dev0
+# Gate child process (nvs_runtime.hidden_trajectory._gate_child) needs jsonschema.
+jsonschema>=4.18
+# meaning-mapper (numpy, httpx), meaning-space-runtime (numpy), hekb-vnext formal store (zstandard fallback < py3.14).
+numpy>=1.26
+httpx>=0.27
+zstandard>=0.25

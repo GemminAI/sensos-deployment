@@ -1,0 +1,17 @@
+{
+  "manifest_version": "platform-manifest/0",
+  "platform_id": "linux-cpu",
+  "decisions": ["D-258", "D-261", "D-262"],
+  "os": {"id": "ubuntu", "version_id": "24.04"},
+  "architectures": ["x86_64", "aarch64"],
+  "python": {"min": "3.12", "max": "3.14"},
+  "inference_engine": null,
+  "observation_adapter": null,
+  "compute_environment": "linux-cpu (no observation)",
+  "lock": {
+    "file": "linux-cpu.lock",
+    "sha256": "f9a7dff288507d79b09df99b8f231c6ba22ca30f9011ca9ec38331feae2c3749",
+    "record": "linux-cpu.lock.record.json",
+    "input": "linux-cpu.lock.in"
+  }
+}
