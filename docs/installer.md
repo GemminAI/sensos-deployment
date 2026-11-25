@@ -1,13 +1,14 @@
 # Installer (linux-cpu, Core only)
 
-Status: **run once on a real machine (2026-11-25).** Host: Parallels VM, Ubuntu 24.04.3, aarch64, Python 3.12.3.
-There the install ended with all Acceptance checks 1-7 passing, and a second run reused the same Formal Store
-(`gen-568e4f0a...`, still one store). Everything else is unconfirmed: see "Not implemented / not verified".
+Status: the Installer has passed Acceptance checks 1-7 on Ubuntu 24.04 virtual machines (aarch64, Python 3.12), including a clean VM
+that started without git or the venv package. A second run reused the same Formal Store (still one store).
+Everything else is unconfirmed: see "Not implemented / not verified".
 
-Confirmed on that host only: git acquisition with the SHA check, `pip install --require-hashes` from the lock, the Gate child,
-Formal Store creation and reuse, checks 1-7 (7 = store round trip).
-Not confirmed: x86_64; Python 3.13 and 3.14; a fresh VM (clean install from scratch); the artifact chain
-(Token Temporal -> window -> Frame -> Measurement); hekb-vnext's HTTP service dependencies.
+Confirmed on those hosts: git acquisition with the SHA check, `pip install --require-hashes` from the lock, the Gate child,
+Formal Store creation and reuse, checks 1-7 (7 = store round trip), and the stop with a clear message when the venv package is missing.
+Not run: a physical machine; x86_64; Python 3.13 and 3.14; the artifact chain
+(Token Temporal -> window -> Frame -> Measurement); hekb-vnext's HTTP service dependencies. Ubuntu 26.04 is outside the platform (check 2 stops).
+The installation steps are in the [README](../README.md).
 
 ## Use
 

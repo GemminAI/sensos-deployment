@@ -45,6 +45,7 @@ tests/test_gitops.py
 tests/test_install_flow.py
 tests/test_manifest.py
 tests/test_public_sync.py
+tests/test_readme.py
 tests/test_store_report.py
 tests/test_uniquename.py
 tests/test_venv.py
